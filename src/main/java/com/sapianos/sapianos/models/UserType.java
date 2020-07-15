@@ -13,8 +13,13 @@ public class UserType {
     @Column(name = "userType")
     private String userType;
 
+
     public UserType(){
 
+    }
+
+    public UserType(String userType){
+        this.userType = userType;
     }
 
     public UserType(int typeId, String userType) {

@@ -12,11 +12,18 @@ public class User {
     private int userId ;
     @Column(name ="userName")
     private String userName;
-    @OneToOne()
+
+    @OneToOne
+    @JoinColumn(name = "userType")
     private UserType userType;
 
     public User(){
 
+    }
+
+    public User(String userName,UserType userType){
+        this.userName = userName;
+        this.userType = userType;
     }
 
     public User(int userId, String userName, UserType userType) {

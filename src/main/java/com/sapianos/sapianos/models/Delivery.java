@@ -26,6 +26,16 @@ public class Delivery {
 
     }
 
+    public Delivery(String locationCountry, String locationCity,String locationStreet, int locationNumber ,
+                    Integer productDataTime){
+        this.locationCountry = locationCountry;
+        this.locationCity = locationCity;
+        this.locationStreet = locationStreet;
+        this.locationNumber = locationNumber;
+        this.productDataTime = productDataTime;
+
+    }
+
     public Delivery(int deliveryId, String locationCountry, String locationCity, String locationStreet,
                     int locationNumber, Integer productDataTime) {
         this.deliveryId = deliveryId;

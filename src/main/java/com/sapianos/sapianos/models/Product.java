@@ -13,18 +13,33 @@ public class Product {
     @Column(name ="productName")
     private String productName;
     @OneToOne
+    @JoinColumn(name = "deliveryProduct")
     private Delivery delivery;
     @OneToOne
+    @JoinColumn(name = "descriptionProduct")
     private Description descriptionProduct;
     @Column(name ="priceProduct")
     private int priceProduct;
     @OneToOne()
+    @JoinColumn(name = "cook")
     private User cook;
     @OneToOne()
+    @JoinColumn(name = "consumer")
     private User consumer;
 
     public Product(){
 
+    }
+
+    public Product(String productName, Description descriptionProduct, int priceProduct, User cook,
+                   User consumer, Delivery delivery)
+    {
+        this.productName = productName;
+        this.descriptionProduct = descriptionProduct;
+        this.priceProduct = priceProduct;
+        this.cook = cook;
+        this.consumer = consumer;
+        this.delivery = delivery;
     }
 
     public Product(int productId, String productName, Description descriptionProduct, int priceProduct, User cook,

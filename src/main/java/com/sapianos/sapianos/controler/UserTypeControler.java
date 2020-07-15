@@ -19,6 +19,6 @@ public class UserTypeControler {
         model.addAttribute("userType",userTypeRepository.findAll());
 
         return "userType";
-    }
+        }
 
-}
+        }

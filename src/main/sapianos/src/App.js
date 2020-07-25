@@ -2,7 +2,13 @@ import React from 'react';
 import './App.css';
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
-import {Container,Row,Jumbotron,Col} from 'react-bootstrap';
+import SearchProduct from "./components/SearchProduct";
+import PostProduct from "./components/PostProduct";
+import Inbox from "./components/Inbox";
+import {Container,Row,Col} from 'react-bootstrap';
+import {BrowserRouter as Router, Switch,Route} from 'react-router-dom'
+import Welcome from "./components/Welcome";
+import Profile from "./components/Profile";
 
 function App() {
     const marginTop ={
@@ -10,21 +16,23 @@ function App() {
     }
 
   return (
-    <div className="App">
-        <NavigationBar></NavigationBar>
+    <Router>
+        <NavigationBar/>
         <Container>
             <Row>
                 <Col lg={12} style={marginTop}>
-                <Jumbotron className="bg-dark text-white">
-                    <Jumbotron className="bg-dark text-white">
-                        <h1>Welcome to SappianoS!</h1>
-                    </Jumbotron>
-                </Jumbotron>
+                    <Switch>
+                        <Route path="/welcome" exact component={Welcome}/>
+                        <Route path="/list" exact component={SearchProduct}/>
+                        <Route path="/add" exact component={PostProduct}/>
+                        <Route path="/inbox" exact component={Inbox}/>
+                        <Route path="/profile" exact component={Profile}/>
+                    </Switch>
                 </Col>
             </Row>
         </Container>
         <Footer/>
-    </div>
+    </Router>
   );
 }
 

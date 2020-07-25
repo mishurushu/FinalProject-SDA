@@ -12,7 +12,7 @@ class Footer extends  React.Component{
           <Navbar fixed="bottom" bg="dark" variant="dark">
               <Container>
               <Col>
-                  <div> {fullYear}-{fullYear+1} All Rights Reserved by Rusu Mihai-Theodor</div>
+                  <div> {fullYear}-{fullYear+1} All Rights Reserved by SapianoS</div>
               </Col>
               </Container>
           </Navbar>

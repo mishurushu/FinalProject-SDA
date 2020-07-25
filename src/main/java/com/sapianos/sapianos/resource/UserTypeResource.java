@@ -37,8 +37,8 @@ public class UserTypeResource {
         return userTypeRepository.edit(userType);
     }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable UserType userType){
-        userTypeRepository.delete(userType);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id){
+        userTypeRepository.deleteById(id);
     }
 }

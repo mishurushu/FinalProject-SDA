@@ -20,4 +20,6 @@ public interface UserTypeRepository extends CrudRepository<UserType, Integer> {
         return null;
     }
 
+
+
 }

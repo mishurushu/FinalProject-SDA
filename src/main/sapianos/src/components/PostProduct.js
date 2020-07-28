@@ -1,22 +1,40 @@
 import React from 'react'
 import {Card,Form,Col,Button} from "react-bootstrap";
+import axios from 'axios';
 
 class PostProduct extends  React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {productName:'',price:'',delivery:'',productTimeDD:'',productTimeMM:'',productTimeYYYY:'',cook:''
-            ,descriere:''};
+        this.state = this.initialState
         this.productChange = this.productChange.bind(this);
         this.submitProduct = this.submitProduct.bind(this);
     }
 
-     submitProduct(event) {
-         alert('Product name: ' +this.state.productName + ' Price: '+ this.state.price + ' Delivery: ' + this.state.delivery+ ' Day: ' +
-             this.state.productTimeDD + ' Month: ' + this.state.productTimeMM + ' Year: ' + this.state.productTimeYYYY
-         + ' Cook: ' + this.state.cook + ' Description: ' + this.state.descriere)
+    initialState = {productName:'',price:'',delivery:'',productTimeDD:'',productTimeMM:'',productTimeYYYY:'',cook:'',
+        descriere:''}
+
+     submitProduct = event => {
          event.preventDefault();
-     }
+         const product = {
+             product: this.state.name,
+             price: this.state.price,
+             delivery: this.state.delivery,
+             productTimeDD: this.state.productTimeDD,
+             productTimeMM: this.state.productTimeMM,
+             productTimeYYYY: this.state.productTimeYYYY,
+             cook: this.state.cook
+         }
+
+         axios.post("http://localhost:8080/rest/product/",product)
+             .then(response =>{
+                 if(response.data != null){
+                     this.setState(this.initialState);
+                     alert("Thank for your sharing")
+                 }
+             });
+         }
+
 
 
     productChange(event){
@@ -26,6 +44,9 @@ class PostProduct extends  React.Component{
     }
 
     render() {
+
+        const{productName, price, delivery,productTimeDD,productTimeMM,productTimeYYYY,cook} = this.state
+
         return(<Card className="border border-dark bg-dark text-white ">
             <Card.Header>Share a meal</Card.Header>
             <Card.Body>
@@ -34,12 +55,13 @@ class PostProduct extends  React.Component{
                         <Form.Group as={Col} controlId="formGridName">
                             <Form.Label>Name</Form.Label>
                             <Form.Control
+                                          autoComplete={"OFF"}
                                           required
                                           type="name"
                                           className={"bg-dark text-white "}
                                           placeholder="Enter name"
                                           name="productName"
-                                          value={this.state.productName}
+                                          value={productName}
                                           onChange={this.productChange}
                             />
                         </Form.Group>
@@ -52,8 +74,9 @@ class PostProduct extends  React.Component{
                                 className={"bg-dark text-white "}
                                 placeholder="Price"
                                 name="price"
-                                value={this.state.price}
+                                value={price}
                                 onChange={this.productChange}
+                                autoComplete={"OFF"}
                             />
                         </Form.Group>
 
@@ -67,19 +90,21 @@ class PostProduct extends  React.Component{
                             className={"bg-dark text-white "}
                             placeholder="Delivery"
                             name="delivery"
-                            value={this.state.delivery}
+                            value={delivery}
                             onChange={this.productChange}
+                            autoComplete={"OFF"}
                         />
                     </Form.Group>
 
                     <Form.Row>
                     <Form.Group controlId="exampleForm.SelectCustomSizeSmTimeDD">
-                        <Form.Label>Time dd</Form.Label>
+                        <Form.Label>Time dd -</Form.Label>
                         <Form.Control required
                                       as="select"
                                       size="sm"
-                                      name={"productTimeDD"} value={this.state.productTimeDD}
+                                      name={"productTimeDD"} value={productTimeDD}
                                       onChange={this.productChange} >
+                            autoComplete={"OFF"}
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -114,13 +139,14 @@ class PostProduct extends  React.Component{
                         </Form.Control>
                     </Form.Group>
                         <Form.Group controlId="exampleForm.SelectCustomSizeSmTimeMM">
-                            <Form.Label>mm</Form.Label>
+                            <Form.Label> mm-</Form.Label>
                             <Form.Control required
                                           as="select"
                                           size="sm"
                                           name={"productTimeMM"}
-                                          value={this.state.productTimeMM}
+                                          value={productTimeMM}
                                           onChange={this.productChange}>
+                                autoComplete={"OFF"}
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -140,8 +166,9 @@ class PostProduct extends  React.Component{
                             <Form.Control required
                                           as="select"
                                           size="sm"
-                                          name={"productTimeYYYY"}value={this.state.productTimeYYYY}
+                                          name={"productTimeYYYY"}value={productTimeYYYY}
                                           onChange={this.productChange}>
+                                autoComplete={"OFF"}
                                 <option>2020</option>
                                 <option>2021</option>
                                 <option>2022</option>
@@ -163,11 +190,14 @@ class PostProduct extends  React.Component{
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridZipCook">
                             <Form.Label>cook - asta trebuie sa se puna automat cand esti logat</Form.Label>
-                            <Form.Control required
+                            <Form.Control
+                                autoComplete={"OFF"}
+                                required
                                           name={"cook"}
                                           className={"bg-dark text-white "}
-                                          value={this.state.cook}
+                                          value={cook}
                                           onChange={this.productChange}/>
+
                         </Form.Group>
                     </Form.Row>
 

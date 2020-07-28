@@ -7,15 +7,15 @@ class SearchProduct extends  React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            products : [],
-            deliverys : []
+            products : []
         };
     }
 
     componentDidMount() {
         axios.get("http://localhost:8080/rest/product/")
             .then(response => response.data)
-            .then((data) => {this.setState({products: data})});
+            .then((data) => {this.setState({products: data})}).then(() => console.log(this.state.products));
+
     }
 
     render() {
@@ -27,7 +27,7 @@ class SearchProduct extends  React.Component{
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Price</th>
+                        <th>Price €</th>
                         <th>Delivery</th>
                         <th>DD/MM/YYYY</th>
                         <th>Cook</th>
@@ -40,11 +40,15 @@ class SearchProduct extends  React.Component{
                             <td colSpan="6">No product yet</td>
                         </tr> :
                         this.state.products.map((product) => (
-                        <tr key={product.id}>
+                        <tr key={product.productId}>
                             <td>{product.productName}</td>
-                            <td>{product.price}</td>
+                            <td>{product.priceProduct}</td>
+                            <td>{product.delivery.locationCountry + " " + product.delivery.locationCity + " "
+                            + product.delivery.locationStreet + product.delivery.locationNumber}</td>
+                            <td>{product.delivery.productDataTime}</td>
+                            <td>{product.cook.userName}</td>
+                            <td>{product.descriptionProduct.descriptionId}</td>
                         </tr>
-
                         ))
                     }
                     </tbody>

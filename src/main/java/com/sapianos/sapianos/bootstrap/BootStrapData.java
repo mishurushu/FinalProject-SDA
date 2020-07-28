@@ -28,14 +28,13 @@ public class BootStrapData implements CommandLineRunner {
 
         UserType cook = new UserType("cook");
         UserType consumer = new UserType("consumer");
-        User user1 = new User("Andrei Alexandru", cook);
-        User user2 = new User("Gavrila Alexandru", consumer);
-        Delivery delivery = new Delivery("Romania", "Bucharest","Lalelelor",
-                44 , 145667);
+        User user1 = new User("Petre Maius", cook);
+        User user2 = new User("Andrei Alexandru", consumer);
+        Delivery delivery = new Delivery("Protugalia", "Lisabona","Vanilia",
+                4 , 12082020);
         Description description = new Description();
-        Product product = new Product("Ciorba de burta",description,999,user1,user2,delivery);
-/*
-        userTypeRepository.save(cook);
+        Product product = new Product("Galuste cu prume",description,22,user1,user2,delivery);
+     /*   userTypeRepository.save(cook);
         userTypeRepository.save(consumer);
         userRepository.save(user1);
         userRepository.save(user2);
@@ -47,8 +46,7 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Count test: " + userRepository.count());
         System.out.println("Count test: " + deliveryRepository.count());
         System.out.println("Count test: " + descriptionRepository.count());
-        System.out.println("Count test: " + productRepository.count());
-*/
+        System.out.println("Count test: " + productRepository.count());*/
 
     }
 }

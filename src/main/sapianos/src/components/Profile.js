@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card} from "react-bootstrap";
+import {Card, Table} from "react-bootstrap";
 import Form from "react-bootstrap/cjs/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -27,7 +27,10 @@ class Profile extends  React.Component{
     }
 
     render() {
-        return(<Card className="border border-dark bg-dark text-white ">
+        return(
+
+
+            <Card className="border border-dark bg-dark text-white ">
             <Card.Header>Edit Profile - Complete your profile</Card.Header>
             <Card.Body>
                 <Form onSubmit={this.submitProfile} id={"profileFormId"}>

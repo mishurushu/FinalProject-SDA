@@ -2,34 +2,84 @@ import React from 'react'
 import {Card,Form,Col,Button} from "react-bootstrap";
 
 class PostProduct extends  React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {productName:'',price:'',delivery:'',productTimeDD:'',productTimeMM:'',productTimeYYYY:'',cook:''
+            ,descriere:''};
+        this.productChange = this.productChange.bind(this);
+        this.submitProduct = this.submitProduct.bind(this);
+    }
+
+     submitProduct(event) {
+         alert('Product name: ' +this.state.productName + ' Price: '+ this.state.price + ' Delivery: ' + this.state.delivery+ ' Day: ' +
+             this.state.productTimeDD + ' Month: ' + this.state.productTimeMM + ' Year: ' + this.state.productTimeYYYY
+         + ' Cook: ' + this.state.cook + ' Description: ' + this.state.descriere)
+         event.preventDefault();
+     }
+
+
+    productChange(event){
+        this.setState({
+        [event.target.name]:event.target.value
+        })
+    }
+
     render() {
         return(<Card className="border border-dark bg-dark text-white ">
             <Card.Header>Share a meal</Card.Header>
             <Card.Body>
-                <Form>
+                <Form onSubmit={this.submitProduct} id={"productFormId"}>
                     <Form.Row>
-                        <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Group as={Col} controlId="formGridName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="name"
-                                          className={"bg-dark text white"}
-                                          placeholder="Enter name" />
+                            <Form.Control
+                                          required
+                                          type="name"
+                                          className={"bg-dark text-white "}
+                                          placeholder="Enter name"
+                                          name="productName"
+                                          value={this.state.productName}
+                                          onChange={this.productChange}
+                            />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Group as={Col} controlId="formGridPrice">
                             <Form.Label>Price</Form.Label>
-                            <Form.Control type="price" className={"bg-dark text white"} placeholder="Price" />
+                            <Form.Control
+                                required
+                                type="price"
+                                className={"bg-dark text-white "}
+                                placeholder="Price"
+                                name="price"
+                                value={this.state.price}
+                                onChange={this.productChange}
+                            />
                         </Form.Group>
+
                     </Form.Row>
 
-                    <Form.Group controlId="formGridAddress1">
+                    <Form.Group as={Col} controlId="formGridDelivery">
                         <Form.Label>Delivery</Form.Label>
-                        <Form.Control className={"bg-dark text white"} placeholder="ex: country,city,str,nb" />
+                        <Form.Control
+                            required
+                            type="delivery"
+                            className={"bg-dark text-white "}
+                            placeholder="Delivery"
+                            name="delivery"
+                            value={this.state.delivery}
+                            onChange={this.productChange}
+                        />
                     </Form.Group>
 
                     <Form.Row>
-                    <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+                    <Form.Group controlId="exampleForm.SelectCustomSizeSmTimeDD">
                         <Form.Label>Time dd</Form.Label>
-                        <Form.Control as="select" size="sm" custom >
+                        <Form.Control required
+                                      as="select"
+                                      size="sm"
+                                      name={"productTimeDD"} value={this.state.productTimeDD}
+                                      onChange={this.productChange} >
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -63,9 +113,14 @@ class PostProduct extends  React.Component{
                             <option>31</option>
                         </Form.Control>
                     </Form.Group>
-                        <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+                        <Form.Group controlId="exampleForm.SelectCustomSizeSmTimeMM">
                             <Form.Label>mm</Form.Label>
-                            <Form.Control as="select" size="sm" custom>
+                            <Form.Control required
+                                          as="select"
+                                          size="sm"
+                                          name={"productTimeMM"}
+                                          value={this.state.productTimeMM}
+                                          onChange={this.productChange}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -80,9 +135,13 @@ class PostProduct extends  React.Component{
                                 <option>12</option>
                             </Form.Control>
                         </Form.Group>
-                        <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+                        <Form.Group controlId="exampleForm.SelectCustomSizeSmYYYY">
                             <Form.Label>yyyy</Form.Label>
-                            <Form.Control as="select" size="sm" custom>
+                            <Form.Control required
+                                          as="select"
+                                          size="sm"
+                                          name={"productTimeYYYY"}value={this.state.productTimeYYYY}
+                                          onChange={this.productChange}>
                                 <option>2020</option>
                                 <option>2021</option>
                                 <option>2022</option>
@@ -102,19 +161,31 @@ class PostProduct extends  React.Component{
                         </Form.Row>
 
                     <Form.Row>
-                        <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>cook - asta trebuie sa se puna automat</Form.Label>
-                            <Form.Control className={"bg-dark text white"} />
+                        <Form.Group as={Col} controlId="formGridZipCook">
+                            <Form.Label>cook - asta trebuie sa se puna automat cand esti logat</Form.Label>
+                            <Form.Control required
+                                          name={"cook"}
+                                          className={"bg-dark text-white "}
+                                          value={this.state.cook}
+                                          onChange={this.productChange}/>
                         </Form.Group>
                     </Form.Row>
 
                     <Form.Check
+                        controlId="formGridDescription"
+                        required
                         type="switch"
                         id="custom-switch"
-                        label="Description with check filds TODO"
+                        label="Description with check fields TODO"
+                        name={"descriere"}
+                        value={this.state.descriere}
+                        onChange={this.productChange}
                     />
                     <p></p>
-                    <Button variant="primary" type="submit" className={"bg-dark text white"}>
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        className={"bg-dark text white"}>
                         Submit
                     </Button>
                 </Form>

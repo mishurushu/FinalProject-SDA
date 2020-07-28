@@ -34,8 +34,8 @@ public class BootStrapData implements CommandLineRunner {
                 44 , 145667);
         Description description = new Description();
         Product product = new Product("Ciorba de burta",description,999,user1,user2,delivery);
-
-       /* userTypeRepository.save(cook);
+/*
+        userTypeRepository.save(cook);
         userTypeRepository.save(consumer);
         userRepository.save(user1);
         userRepository.save(user2);
@@ -47,7 +47,8 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Count test: " + userRepository.count());
         System.out.println("Count test: " + deliveryRepository.count());
         System.out.println("Count test: " + descriptionRepository.count());
-        System.out.println("Count test: " + productRepository.count());*/
+        System.out.println("Count test: " + productRepository.count());
+*/
 
     }
 }
